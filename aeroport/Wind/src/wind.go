@@ -1,13 +1,18 @@
 package main
 
-
 import "github.com/eclipse/paho.mqtt.golang"
 import "fmt"
 import "time"
+import "strconv"
+import "math/rand"
 
 func main() {
 
-	opts := mqtt.NewClientOptions().AddBroker("tcp://localhost:1883").SetClientID("aeroport_wind")
+	config := GetConfig()
+
+	host := fmt.Sprintf("tcp://%s:%s", config.HOST, config.PORT)
+
+	opts := mqtt.NewClientOptions().AddBroker(host).SetClientID(config.Captor)
 
 	c := mqtt.NewClient(opts)
 
@@ -15,22 +20,30 @@ func main() {
 		panic(token.Error())
 	}
 
-	d := 200*time.Millisecond
+	d := time.Duration(rand.Int31n(config.Delay)) *  time.Millisecond
 
 	for x := range time.Tick(d) {
 		fmt.Println(x)
-		sendWind(c)
+		SendWind(c, config)
 	}
 
 }
 
-func sendWind(c mqtt.Client) {
+func SendWind(c mqtt.Client, config Configuration) {
 			
-	c.Publish("aeroport/wind", 1, false, "20KM/h")
+	mesure := GenerateMesure(config)
 
-	if token := c.Publish("aeroport/wind", 1, false, "20KM/h"); token.Wait() && token.Error() != nil {
+	c.Publish(config.TOPIC, 1, false, mesure)
+
+	if token := c.Publish(config.TOPIC, 1, false, mesure); token.Wait() && token.Error() != nil {
 		fmt.Println(token.Error())
 	}
 	
-	fmt.Println("Data sent")
+	fmt.Println(mesure)
+}
+
+func GenerateMesure (config Configuration) string {
+	value := strconv.Itoa(rand.Intn(100))
+	date := time.Now()
+	return fmt.Sprintf("%s:%s:%s:%s:%s",config.Captor, config.AITA, config.Type, value, date)
 }
