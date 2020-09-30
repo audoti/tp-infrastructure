@@ -7,7 +7,7 @@ import (
 )
 
 type Configuration struct {
-	Delay int
+	Delay int32
 	Type string
 	Captor string
 	AITA string

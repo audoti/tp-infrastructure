@@ -20,7 +20,7 @@ func main() {
 		panic(token.Error())
 	}
 
-	d := 200*time.Millisecond
+	d := time.Duration(rand.Int31n(config.Delay)) *  time.Millisecond
 
 	for x := range time.Tick(d) {
 		fmt.Println(x)
