@@ -1,10 +1,11 @@
 package main
 
-import "github.com/eclipse/paho.mqtt.golang"
-import "fmt"
-import "time"
-import "strconv"
-import "math/rand"
+import (
+"github.com/eclipse/paho.mqtt.golang"
+"fmt"
+"time"
+"strconv"
+"math/rand")
 
 func main() {
 
