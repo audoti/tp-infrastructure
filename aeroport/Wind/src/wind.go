@@ -15,11 +15,12 @@ func main() {
 		panic(token.Error())
 	}
 
-	d := 20*time.Millisecond
+	d := 200*time.Millisecond
 
 	for x := range time.Tick(d) {
 
 		fmt.Println(x)
+
 
 		c.Publish("aeroport/wind", 1, false, "20KM/h")
 
