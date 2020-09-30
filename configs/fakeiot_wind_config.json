@@ -1,0 +1,9 @@
+{
+  "Delay": 200,
+  "Type": "Wind speed",
+  "Sensor": "ID_5561",
+  "AITA": "LAN",
+  "TOPIC": "aeroport/wind",
+  "HOST": "localhost",
+  "PORT": 18830
+}
