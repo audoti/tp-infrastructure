@@ -10,12 +10,12 @@ import (
 )
 
 type Configuration struct {
-	Delay  int32
+	Delay  int
 	Type   string
 	Sensor string
 	AITA   string
 	TOPIC  string
-	PORT   string
+	PORT   int
 	HOST   string
 }
 
@@ -39,4 +39,19 @@ func GetConfig() Configuration {
 // TimeToDate will convert a golang `time.Now()` to a YYYY-MM-DD date
 func TimeToDate(t time.Time) string {
 	return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+}
+
+func SetConfig(delay int, sensorType string, sensorID string, aita string, topic string, host string, port int) Configuration {
+
+	newConfif := Configuration{
+		Delay:  delay,
+		Type:   sensorType,
+		Sensor: sensorID,
+		AITA:   aita,
+		TOPIC:  topic,
+		PORT:   port,
+		HOST:   host,
+	}
+	fmt.Println(newConfif)
+	return newConfif
 }
