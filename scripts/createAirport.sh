@@ -1,0 +1,2 @@
+go run cmd/fakeiot/main.go --delay=200 --sensorType="wind speed" --sensorID="ID_5561" --aita="LAN" --topic="aeroport/wind" --host="localhost" --port=1883 &
+go run cmd/fakeiot/main.go --delay=200 --sensorType="wind speed" --sensorID="ID_5561" --aita="ATL" --topic="aeroport/wind" --host="localhost" --port=1883 &
