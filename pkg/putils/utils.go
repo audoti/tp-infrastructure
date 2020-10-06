@@ -1,8 +1,10 @@
 package putils
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/tkanos/gonfig"
 )
@@ -32,4 +34,9 @@ func GetConfig() Configuration {
 	}
 
 	return configuration
+}
+
+// TimeToDate will convert a golang `time.Now()` to a YYYY-MM-DD date
+func TimeToDate(t time.Time) string {
+	return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 }

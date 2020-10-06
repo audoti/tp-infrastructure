@@ -1,6 +1,6 @@
 {
   "Delay": 200,
-  "Type": "Wind speed",
+  "Type": "wind",
   "Sensor": "ID_5561",
   "AITA": "LAN",
   "TOPIC": "aeroport/wind",

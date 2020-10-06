@@ -24,6 +24,6 @@ func SendWind(c mqtt.Client, config putils.Configuration) {
 
 func generateMesure(config putils.Configuration) string {
 	value := strconv.Itoa(rand.Intn(100))
-	date := time.Now()
-	return fmt.Sprintf("%s:%s:%s:%s:%s", config.Sensor, config.AITA, config.Type, value, date)
+	date := time.Now().Format(time.RFC3339)
+	return fmt.Sprintf("%s,%s,%s,%s,%s", config.Sensor, config.AITA, config.Type, value, date)
 }
