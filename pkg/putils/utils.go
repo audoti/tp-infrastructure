@@ -36,14 +36,8 @@ func GetConfig() Configuration {
 	return configuration
 }
 
-// TimeToDate will convert a golang `time.Now()` to a YYYY-MM-DD date
-func TimeToDate(t time.Time) string {
-	return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
-}
-
 func SetConfig(delay int, sensorType string, sensorID string, aita string, topic string, host string, port int) Configuration {
-
-	newConfif := Configuration{
+	newConfig := Configuration{
 		Delay:  delay,
 		Type:   sensorType,
 		Sensor: sensorID,
@@ -52,6 +46,16 @@ func SetConfig(delay int, sensorType string, sensorID string, aita string, topic
 		PORT:   port,
 		HOST:   host,
 	}
-	fmt.Println(newConfif)
-	return newConfif
+	fmt.Println(newConfig)
+	return newConfig
+}
+
+// TimeToDate will convert a golang `time.Now()` to a YYYY-MM-DD date
+func TimeToDate(t time.Time) string {
+	return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+}
+
+// Sleep <ms> milliseconds
+func Sleep(ms int) {
+	time.Sleep(time.Duration(ms) * time.Millisecond)
 }
