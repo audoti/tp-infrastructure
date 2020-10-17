@@ -19,6 +19,10 @@ import (
 func StartMqttFile() {
 	client := connect("tcp://localhost:18830", "listener-file")
 	subscribeMqtt(client)
+
+	// mkdir -p logs_dir
+	os.MkdirAll("logs", os.ModePerm)
+
 	// Kill the process on SIGTERM
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
@@ -75,7 +79,7 @@ func onMessageReceived(client mqtt.Client, message mqtt.Message) {
 	// chemin du fichier csv
 	filePath := filepath.Join("logs", airportCode+"-"+date+"-"+typeSensor+".csv")
 	fmt.Println(filePath)
-	writeFile(filePath, fmt.Sprintf("%s,%s,%s,%s,%s", idSensor, airportCode, typeSensor, valueSensor, dateTime))
+	writeFile(filePath, fmt.Sprintf("%s,%s,%s,%s,%s", idSensor, airportCode, typeSensor, valueSensor, splitted[4]))
 }
 
 func writeFile(filePath string, txt string) {
