@@ -32,7 +32,7 @@ func StartFakeIot() {
 	delay := flag.Int("delay", 100, "the delay of the sensor")
 	sensorType := flag.String("sensorType", "Wind speed", "the type of the sensor")
 	sensorID := flag.String("sensorID", "0000", "the sensor id")
-	aita := flag.String("aita", "AITA", "the code of the airport the sensor is associated to")
+	aita := flag.String("aita", putils.Aita[0], "the code of the airport the sensor is associated to")
 	topic := flag.String("topic", "aeroport/wind", "the topic of the sensor")
 	sensorHost := flag.String("host", "localhost", "the host")
 	port := flag.Int("port", 18830, "the port")
