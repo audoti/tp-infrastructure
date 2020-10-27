@@ -1,0 +1,350 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "FIL-A2-infrastructures-integration",
+    "version": "1.0.0",
+    "description": "Training project to learn Golang, MQTT and Redis.",
+    "license": {
+      "name": "WTFPL",
+      "url": "https://en.wikipedia.org/wiki/WTFPL#Version_2"
+    },
+    "x-logo": {
+      "url": ""
+    },
+    "contact": null
+  },
+  "servers": [
+    {
+      "url": "https://api.example.io"
+    }
+  ],
+  "paths": {
+    "/airports": {
+      "get": {
+        "tags": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Airports"
+                },
+                "example": "{\r\n  \"aitas\": [\r\n    {\r\n      \"Aita\": \"AMS\",\r\n      \"Name\": \"Amsterdam Airport Schiphol\"\r\n    },\r\n    {\r\n      \"Aita\": \"ATL\",\r\n      \"Name\": \"Hartsfield–Jackson Atlanta International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"BKK\",\r\n      \"Name\": \"Suvarnabhumi Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"CAN\",\r\n      \"Name\": \"Guangzhou Baiyun International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"CDG\",\r\n      \"Name\": \"Paris Charles de Gaulle Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"DEL\",\r\n      \"Name\": \"Indira Gandhi International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"DEN\",\r\n      \"Name\": \"Denver International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"DFW\",\r\n      \"Name\": \"Dallas/Fort Worth International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"DXB\",\r\n      \"Name\": \"Dubai International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"FRA\",\r\n      \"Name\": \"Frankfurt am Main Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"HKG\",\r\n      \"Name\": \"Hong Kong International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"HND\",\r\n      \"Name\": \"Tokyo International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"ICN\",\r\n      \"Name\": \"Incheon International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"JFK\",\r\n      \"Name\": \"John F. Kennedy International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"LAX\",\r\n      \"Name\": \"Los Angeles International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"LHR\",\r\n      \"Name\": \"Heathrow Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"ORD\",\r\n      \"Name\": \"O'Hare International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"PEK\",\r\n      \"Name\": \"Beijing Capital International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"PVG\",\r\n      \"Name\": \"Shanghai Pudong International Airport\"\r\n    },\r\n    {\r\n      \"Aita\": \"SIN\",\r\n      \"Name\": \"Singapore Changi Airport\"\r\n    }\r\n  ]\r\n}"
+              }
+            },
+            "description": "successful operation",
+            "x-last-modified": 1603833447436
+          }
+        },
+        "operationId": "getAirports",
+        "summary": "Get the list of airports",
+        "description": ""
+      },
+      "x-last-modified": 1603831382801
+    },
+    "/airports/(IATA}/date/{date}/sensors/{sensor}": {
+      "summary": "",
+      "description": "",
+      "get": {
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SensorData"
+                }
+              }
+            },
+            "description": "successful operation",
+            "x-last-modified": 1603833461308
+          },
+          "404": {
+            "description": "IATA/Date/sensor not found",
+            "x-last-modified": 1603832003662
+          }
+        },
+        "operationId": "getSensorDataAtDate",
+        "summary": "Get the sensor data of an airport at a specified date",
+        "description": ""
+      },
+      "parameters": [
+        {
+          "deprecated": false,
+          "example": "",
+          "name": "IATA",
+          "schema": {
+            "format": "",
+            "pattern": "",
+            "enum": [],
+            "type": "string",
+            "example": ""
+          },
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "format": "",
+          "pattern": "",
+          "enum": [],
+          "x-last-modified": 1603832131232
+        },
+        {
+          "name": "sensor",
+          "in": "path",
+          "example": "",
+          "required": true,
+          "deprecated": false,
+          "schema": {
+            "$ref": "#/components/schemas/Sensor"
+          },
+          "x-last-modified": 1603834835873
+        },
+        {
+          "name": "date",
+          "in": "path",
+          "example": "",
+          "required": true,
+          "deprecated": false,
+          "schema": {
+            "example": "",
+            "type": "string",
+            "format": "",
+            "pattern": "",
+            "enum": []
+          },
+          "type": "string",
+          "format": "",
+          "pattern": "",
+          "enum": [],
+          "x-last-modified": 1603834854372
+        }
+      ],
+      "x-last-modified": 1603831732089
+    },
+    "/airports/dateStats/{date}": {
+      "summary": "",
+      "description": "",
+      "get": {
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            },
+            "description": "successful operation",
+            "x-last-modified": 1603833542161
+          },
+          "404": {
+            "description": "IATA/Date/sensor not found",
+            "x-last-modified": 1603832003662
+          }
+        },
+        "operationId": "getGlobalStatsAtDate",
+        "summary": "Get global statistics at a specified date",
+        "description": ""
+      },
+      "parameters": [
+        {
+          "deprecated": false,
+          "example": "",
+          "name": "Date",
+          "schema": {
+            "format": "date or \"total\"",
+            "pattern": "",
+            "enum": [],
+            "type": "string",
+            "example": ""
+          },
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "format": "date or \"total\"",
+          "pattern": "",
+          "enum": [],
+          "x-last-modified": 1603832159452
+        }
+      ],
+      "x-last-modified": 1603834205888
+    },
+    "/airports/(IATA}/dateStats/{date}": {
+      "summary": "",
+      "description": "",
+      "get": {
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            },
+            "description": "successful operation",
+            "x-last-modified": 1603833542161
+          },
+          "404": {
+            "description": "IATA/Date/sensor not found",
+            "x-last-modified": 1603832003662
+          }
+        },
+        "operationId": "getAirportStatsAtDate",
+        "summary": "Get statistics of an airport at a specified date",
+        "description": ""
+      },
+      "parameters": [
+        {
+          "deprecated": false,
+          "example": "",
+          "name": "IATA",
+          "schema": {
+            "format": "",
+            "pattern": "",
+            "enum": [],
+            "type": "string",
+            "example": ""
+          },
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "format": "",
+          "pattern": "",
+          "enum": [],
+          "x-last-modified": 1603832131232
+        },
+        {
+          "name": "date",
+          "in": "path",
+          "example": "",
+          "required": true,
+          "deprecated": false,
+          "schema": {
+            "example": "",
+            "type": "string",
+            "format": "",
+            "pattern": "",
+            "enum": []
+          },
+          "type": "string",
+          "format": "",
+          "pattern": "",
+          "enum": [],
+          "x-last-modified": 1603834871202
+        }
+      ],
+      "x-last-modified": 1603834224005
+    }
+  },
+  "components": {
+    "schemas": {
+      "Airports": {
+        "type": "object",
+        "properties": {
+          "aitas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Aita": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Sensor": {
+        "enum": [
+          "wind",
+          "temperature",
+          "pressure"
+        ],
+        "type": "string"
+      },
+      "SensorData": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "d": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "v": {
+                "format": "float64",
+                "type": "number"
+              }
+            }
+          },
+          "min": {
+            "format": "float64",
+            "type": "number"
+          },
+          "max": {
+            "format": "float64",
+            "type": "number"
+          },
+          "avg": {
+            "format": "float64",
+            "type": "number"
+          },
+          "count": {
+            "format": "float64",
+            "type": "number"
+          }
+        }
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "d": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "v": {
+                "format": "float64",
+                "type": "number"
+              }
+            }
+          },
+          "min": {
+            "format": "float64",
+            "type": "number"
+          },
+          "max": {
+            "format": "float64",
+            "type": "number"
+          },
+          "avg": {
+            "format": "float64",
+            "type": "number"
+          },
+          "count": {
+            "format": "float64",
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {},
+    "responses": {},
+    "parameters": {}
+  },
+  "tags": [],
+  "security": [],
+  "externalDocs": null
+}
